@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#source 1-config.sh
+source 1-config.sh
 
 echo Destroying and deleting $DOMNAME
 echo Images for $DOMNAME before delete:
