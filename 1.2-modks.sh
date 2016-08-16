@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+source 1-config.sh
 
 read -d '' MYHOSTS <<  _EOF_
 

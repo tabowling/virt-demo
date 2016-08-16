@@ -9,6 +9,7 @@ then
 	exit 1;
 fi	
 
+# grab hypervisor root user's ssh key to insert
 PUBRSA=`cat ~/.ssh/id_rsa.pub`
 echo $PUBRSA
 
@@ -76,3 +77,8 @@ _EOF_
 genisoimage -output ${DOMNAME}-cloudinit.iso -volid cidata -joliet -rock user-data meta-data
 
 sudo mv ${DOMNAME}-cloudinit.iso $VMPATH/
+
+ls -lh $VMPATH/
+
+
+
