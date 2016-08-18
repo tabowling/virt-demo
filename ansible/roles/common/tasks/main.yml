@@ -1,0 +1,12 @@
+# common tasks for all rhel systems
+
+- name: Register System with RHN Subscription Manager
+  redhat_subscription: state=present
+                       username={{ rhn_user }}
+                       password={{ rhn_pass }}
+                       autosubscribe=true
+  when: ansible_distribution == 'RedHat'
+
+- name: attach the employee sku
+  command: subscription-manager attach --pool={{ employee_sku }}
+  when: ansible_distribution == 'RedHat'

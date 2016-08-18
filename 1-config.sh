@@ -4,7 +4,7 @@
 
 #  source 1-config.sh
 
-RHPASS=""
+#RHPASS=""
 
 #**  set these manually **
 DEMOSEAT=1
@@ -32,7 +32,7 @@ fi
 MAC=SetMAC
 VMPATH=/home/VirtualMachines
 #VMPATH=/var/lib/libvirt/images
-ISOPATH=$VMPATH
+ISOPATH=$VMPATH/ISOs
 TEMPLATE=$ISOPATH/rhel-guest-image-7.2-20160302.0.x86_64.qcow2
 ISOIMG=$ISOPATH/RHEL-7.2-20151030.0-Server-x86_64-dvd1.iso
 

@@ -1,0 +1,11 @@
+[laptop]
+192.168.122.1
+
+[satellite]
+sat6primary ip=192.168.122.2 vcpus=3 ram=8192 mac=00:1c:c4:00:00:01
+# sat6primary ip=192.168.122.2 vcpus=4 ram=16384 mac=00:1c:c4:00:00:01
+
+[rhel]
+rhel1 ip=192.168.122.180 vcpus=2 ram=2048 mac=00:1c:c4:00:00:02
+rhel2 ip=192.168.122.181 vcpus=2 ram=2048 mac=00:1c:c4:00:00:03
+
