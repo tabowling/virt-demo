@@ -76,9 +76,9 @@ _EOF_
 # Create the image and move into place
 genisoimage -output ${DOMNAME}-cloudinit.iso -volid cidata -joliet -rock user-data meta-data
 
-sudo mv ${DOMNAME}-cloudinit.iso $VMPATH/
+sudo mv ${DOMNAME}-cloudinit.iso $ISOPATH/
 
-ls -lh $VMPATH/
+ls -lh $ISOPATH/
 
 
 

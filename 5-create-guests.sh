@@ -25,7 +25,7 @@ case $DOMNAME in
                 sudo virt-install -v \
                 --name $DOMNAME $RAM $VCPUS \
                 --disk bus=virtio,path=$VMPATH/${DOMNAME}.qcow2    $DATADISK \
-                --disk device=cdrom,path=$VMPATH/${DOMNAME}-cloudinit.iso \
+                --disk device=cdrom,path=$ISOPATH/${DOMNAME}-cloudinit.iso \
                 -w network=${VIRSHNETNAME},model=virtio,mac=$MAC \
                 --graphics spice \
                 --noautoconsole
@@ -108,7 +108,7 @@ sudo qemu-img create -f qcow2 -b $TEMPLATE $VMPATH/${DOMNAME}.qcow2
 sudo virt-install -v \
 --name $DOMNAME $RAM $VCPUS \
 --disk bus=virtio,path=$VMPATH/${DOMNAME}.qcow2    $DATADISK \
---disk device=cdrom,path=$VMPATH/${DOMNAME}-cloudinit.iso \
+--disk device=cdrom,path=$ISOPATH/${DOMNAME}-cloudinit.iso \
 -w network=${VIRSHNETNAME},model=virtio,mac=$MAC \
 --graphics spice \
 --noautoconsole 
