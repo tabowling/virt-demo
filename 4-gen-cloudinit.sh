@@ -76,12 +76,12 @@ runcmd:
   - sleep 2
   - systemctl start firewalld.service
   - systemctl enable firewalld.service
+  - yum -y install satellite
+  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -C "foreman@${SATSERV}" -N "" '
   - sleep 2
   - 'firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https && firewall-cmd --permanent --add-port="5674/tcp" '
   - sleep 2
   - firewall-cmd --reload
-  - yum -y install satellite
-  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -C "foreman@${SATSERV}" -N "" '
 
 _EOF_
 
