@@ -16,7 +16,7 @@ echo $PUBRSA
 # Create meta-data for cloud-init
 cat > meta-data << _EOF_
 instance-id: $DOMNAME
-local-hostname: ${DOMNAME}.example.com
+local-hostname: ${DOMNAME}.example${OCTET}.com
 _EOF_
 
 

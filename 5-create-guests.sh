@@ -13,7 +13,7 @@ case $DOMNAME in
 		RAM=" --ram 8192 ";
 		VCPUS=" --vcpus 4";
 		;;
-	SAT6demo[1-9])
+	sat6demo[1-9])
 		MAC=$serverMac
 		RAM=" --ram 13000 "
 		VCPUS=" --vcpus 6"
