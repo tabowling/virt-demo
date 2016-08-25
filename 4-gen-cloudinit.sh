@@ -79,7 +79,7 @@ runcmd:
   - 'firewall-cmd --permanent --add-port="5674/tcp" '
   - firewall-cmd --reload
   - yum -y install satellite
-  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -C "foreman@${SATSERV}" -N "" '
+  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -f /usr/share/foreman/.ssh/id_rsa -C "foreman@${SATSERV}" -N "" '
 
 _EOF_
 
