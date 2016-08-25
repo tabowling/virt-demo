@@ -13,6 +13,16 @@ fi
 PUBRSA=`cat ~/.ssh/id_rsa.pub`
 echo $PUBRSA
 
+FOREMAN_KEY_SETUP=""
+if [ "$DOMNAME" == "sat6demo[1-9]" ] then 
+	# pregenerate foreman keys  /usr/bin/ssh-keygen -qt rsa -f ./foreman.id_rsa -C "foreman@${SATSERV}" -N ""
+	cat foreman.id_rsa.pub >> /root/.ssh/known_hosts
+	FOREMAN_RSA=`cat ./foreman.id_rsa`
+	FOREMAN_PUB=`cat ./foreman.id_rsa.pub`
+	FORMAN_KEY_SETUP="  - mkdir -p /usr/share/foreman/.ssh/;  - echo $FOREMAN_RSA > /usr/share/foreman/.ssh/id_rsa;  - echo $FOREMAN_PUB > /usr/share/foreman/.ssh/id_rsa.pub;"
+fi
+
+
 # Create meta-data for cloud-init
 cat > meta-data << _EOF_
 instance-id: $DOMNAME
@@ -45,9 +55,19 @@ chpasswd:
 rh_subscription:
   username: $RHNUSER
   password: $RHNPASS
-  service-level: self-support
-  add-pool: [8a85f9833e1404a9013e3cddf95a0599, 8a85f981501430fe015019593a930646]
-  enable-repo: [rhel-7-server-rpms, rhel-server-rhscl-7-rpms, rhel-7-server-satellite-6.2-rpms]
+  add-pool:
+    - 8a85f9833e1404a9013e3cddf95a0599
+    - 8a85f981501430fe015019593a930646
+  disable-repo:
+    - '*'
+  enable-repo:
+    - rhel-7-server-rpms
+    - rhel-server-rhscl-7-rpms
+    - rhel-7-server-satellite-6.2-rpms
+packages:
+  - firewalld
+runcmd:
+FORMAN_KEY_SETUP
 
 _EOF_
 
