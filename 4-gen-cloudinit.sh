@@ -51,6 +51,13 @@ write_files:
     encoding: b64
     content: $PUBRSA
 
+rh_subscription:
+  username: $RHNUSER
+  password: $RHNPASS
+  service-level: self-support
+  add-pool 8a85f981501430fe015019593a930646
+  add-pool 8a85f9833e1404a9013e3cddf95a0599
+
 
 # package_upgrade: true
 packages:
@@ -72,6 +79,9 @@ runcmd:
   - systemctl daemon-reload
   - systemctl enable cockpitws.service
 _EOF_
+
+# rh_subscription
+#  auto-attach: True
 
 # Create the image and move into place
 genisoimage -output ${DOMNAME}-cloudinit.iso -volid cidata -joliet -rock user-data meta-data
