@@ -13,8 +13,8 @@ fi
 PUBRSA=`cat ~/.ssh/id_rsa.pub`
 echo $PUBRSA
 echo $PWD
-FOREMAN_RSA=`cat foreman.id_rsa`
-FOREMAN_PUB=`cat foreman.id_rsa.pub`
+FOREMAN_RSA=`cat ./foreman.id_rsa`
+FOREMAN_PUB=`cat ./foreman.id_rsa.pub`
 
 FOREMAN_KEY_SETUP=""
 if [ "$DOMNAME" == "sat6demo[1-9]" ]
@@ -78,8 +78,8 @@ runcmd:
   - firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https && firewall-cmd --permanent --add-port="5674/tcp" && firewall-cmd --reload
   - yum -y install satellite
   - yum -y groupinstall "Server with GUI"
-  - echo $FOREMAN_RSA > /usr/share/foreman/.ssh/id_rsa
-  - echo $FOREMAN_PUB > /usr/share/foreman/.ssh/id_rsa.pub
+  - echo "$FOREMAN_RSA" > /usr/share/foreman/.ssh/id_rsa
+  - echo "$FOREMAN_PUB" > /usr/share/foreman/.ssh/id_rsa.pub
 
 _EOF_
 
