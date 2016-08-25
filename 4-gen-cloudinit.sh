@@ -69,7 +69,7 @@ rh_subscription:
 packages:
   - firewalld
 runcmd:
-FORMAN_KEY_SETUP
+$FORMAN_KEY_SETUP
 
 _EOF_
 
