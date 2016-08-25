@@ -66,10 +66,17 @@ rh_subscription:
     - rhel-7-server-rpms
     - rhel-server-rhscl-7-rpms
     - rhel-7-server-satellite-6.2-rpms
-packages:
-  - firewalld
 runcmd:
-$FORMAN_KEY_SETUP
+  - subscription-manager repos --disable=*
+  - subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-server-rhscl-7-rpms --enable=rhel-7-server-satellite-6.2-rpms
+  - yum -y install firewalld
+  - systemctl start firewalld.service
+  - systemctl enable firewalld.service
+  - firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https && firewall-cmd --permanent --add-port="5674/tcp" && firewall-cmd --reload
+  - yum -y install satellite
+  - yum -y groupinstall "Server with GUI"
+  - echo $FOREMAN_RSA > /usr/share/foreman/.ssh/id_rsa
+  - echo $FOREMAN_PUB > /usr/share/foreman/.ssh/id_rsa.pub
 
 _EOF_
 
