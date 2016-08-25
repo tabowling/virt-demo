@@ -46,34 +46,16 @@ rh_subscription:
   username: $RHNUSER
   password: $RHNPASS
   service-level: self-support
-  add-pool 8a85f9833e1404a9013e3cddf95a0599,8a85f981501430fe015019593a930646
-  disable-repo: *
-  enable-repo: rhel-7-server-rpms,rhel-server-rhscl-7-rpms,rhel-7-server-satellite-6.2-rpms
-packages:
-  - git
-  - screen
-  - vim-enhanced
-  - redhat-support-tool
-  - pcp
-  - sos
-  - chrony
-  - kexec-tools
-  - abrt-addon-kerneloops
-  - abrt-addon-ccpp
-  - abrt-cli
-  - spice-vdagent
-  - openssh-clients
-  - wget
+  add-pool [8a85f9833e1404a9013e3cddf95a0599,8a85f981501430fe015019593a930646]
+  disable-repo: [*]
+  enable-repo: [rhel-7-server-rpms,rhel-server-rhscl-7-rpms,rhel-7-server-satellite-6.2-rpms]
 
 _EOF_
-
-# rh_subscription
-#  auto-attach: True
 
 # Create the image and move into place
 genisoimage -output ${DOMNAME}-cloudinit.iso -volid cidata -joliet -rock user-data meta-data
 
-sudo mv ${DOMNAME}-cloudinit.iso $ISOPATH/
+mv ${DOMNAME}-cloudinit.iso $ISOPATH/
 
 ls -lh $ISOPATH/
 
