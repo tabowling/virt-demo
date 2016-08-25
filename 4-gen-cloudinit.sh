@@ -78,11 +78,11 @@ runcmd:
   - firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https && firewall-cmd --permanent --add-port="5674/tcp" && firewall-cmd --reload
   - yum -y install satellite
   - yum -y groupinstall "Server with GUI"
-  - echo "$FOREMAN_RSA" > /usr/share/foreman/.ssh/id_rsa
-  - echo "$FOREMAN_PUB" > /usr/share/foreman/.ssh/id_rsa.pub
 
 _EOF_
 
+#  - echo "$FOREMAN_RSA" > /usr/share/foreman/.ssh/id_rsa
+#  - echo "$FOREMAN_PUB" > /usr/share/foreman/.ssh/id_rsa.pub
 # Create the image and move into place
 genisoimage -output ${DOMNAME}-cloudinit.iso -volid cidata -joliet -rock user-data meta-data
 
