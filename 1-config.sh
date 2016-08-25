@@ -7,7 +7,7 @@
 #RHPASS=""
 
 #**  set these manually **
-DEMOSEAT=1
+#DEMOSEAT=1
 SATSERV="sat6demo${DEMOSEAT}"
 #DOMNAME=$SATSERV
 #DOMNAME="client${DEMOSEAT}"
