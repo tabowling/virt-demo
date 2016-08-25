@@ -21,7 +21,7 @@ then
 	FOREMAN_RSA=`cat ./foreman.id_rsa`;
 	FOREMAN_PUB=`cat ./foreman.id_rsa.pub`;
 	FORMAN_KEY_SETUP="  - mkdir -p /usr/share/foreman/.ssh/;  - echo $FOREMAN_RSA > /usr/share/foreman/.ssh/id_rsa;  - echo $FOREMAN_PUB > /usr/share/foreman/.ssh/id_rsa.pub;";
-	echo $FOREMAN_KEY_SETUP;
+	echo $FOREMAN_KEY_SETUP";
 fi
 
 
