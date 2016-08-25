@@ -27,21 +27,20 @@ cat > user-data << _EOF_
 users: 
   - default
   - name: cloud-user
-    chpasswd: {expire: True}
+    chpasswd: {expire: False}
     sudo: ["ALL=(ALL) NOPASSWD:ALL"]
-    groups: wheel,adm,systemd-journal
+    groups: users,wheel,adm,systemd-journal
     ssh_pwauth: True
     ssh_authorized_keys:
       - $PUBRSA
   - name: root
-    chpasswd: {expire: True}
     ssh_pwauth: True
     ssh_authorized_keys:
       - $PUBRSA
 chpasswd: 
   list: |
-    root:$RHPASS
-    cloud-user:$RHPASS
+    root:redhat
+    cloud-user:redhat
   expire: False
 
 write_files:
