@@ -16,10 +16,10 @@ echo $PUBRSA
 FOREMAN_KEY_SETUP=""
 if [ "$DOMNAME" == "sat6demo[1-9]" ] then 
 	# pregenerate foreman keys  /usr/bin/ssh-keygen -qt rsa -f ./foreman.id_rsa -C "foreman@${SATSERV}" -N ""
-	cat foreman.id_rsa.pub >> /root/.ssh/known_hosts
-	FOREMAN_RSA=`cat ./foreman.id_rsa`
-	FOREMAN_PUB=`cat ./foreman.id_rsa.pub`
-	FORMAN_KEY_SETUP="  - mkdir -p /usr/share/foreman/.ssh/;  - echo $FOREMAN_RSA > /usr/share/foreman/.ssh/id_rsa;  - echo $FOREMAN_PUB > /usr/share/foreman/.ssh/id_rsa.pub;"
+	cat foreman.id_rsa.pub >> /root/.ssh/known_hosts;
+	FOREMAN_RSA=`cat ./foreman.id_rsa`;
+	FOREMAN_PUB=`cat ./foreman.id_rsa.pub`;
+	FORMAN_KEY_SETUP="  - mkdir -p /usr/share/foreman/.ssh/;  - echo $FOREMAN_RSA > /usr/share/foreman/.ssh/id_rsa;  - echo $FOREMAN_PUB > /usr/share/foreman/.ssh/id_rsa.pub;";
 fi
 
 
