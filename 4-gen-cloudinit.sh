@@ -12,8 +12,9 @@ fi
 # grab hypervisor root user's ssh key to insert
 PUBRSA=`cat ~/.ssh/id_rsa.pub`
 echo $PUBRSA
-FOREMAN_RSA=`cat ./foreman.id_rsa`;
-FOREMAN_PUB=`cat ./foreman.id_rsa.pub`;
+echo $PWD
+FOREMAN_RSA=`cat foreman.id_rsa`
+FOREMAN_PUB=`cat foreman.id_rsa.pub`
 
 FOREMAN_KEY_SETUP=""
 if [ "$DOMNAME" == "sat6demo[1-9]" ]
