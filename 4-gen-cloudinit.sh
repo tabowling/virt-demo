@@ -77,7 +77,9 @@ runcmd:
   - systemctl enable firewalld.service
   - yum -y install satellite
   - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -f /usr/share/foreman/.ssh/id_rsa -C "foreman@${SATSERV}" -N "" '
+  - su - foreman -s /bin/bash -c 'ssh-keyscan 192.168.11.1 >> /usr/share/foreman/.ssh/known_hosts'
   - yum -y groupinstall "Server with GUI"
+  - systemctl set-default graphical.target
   - 'firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https '
   - 'firewall-cmd --permanent --add-port="5674/tcp" '
   - firewall-cmd --reload
