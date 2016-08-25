@@ -73,15 +73,13 @@ runcmd:
   - subscription-manager repos --disable=*
   - subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-server-rhscl-7-rpms --enable=rhel-7-server-satellite-6.2-rpms
   - yum -y install firewalld
-  - sleep 2
   - systemctl start firewalld.service
   - systemctl enable firewalld.service
+  - 'firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https '
+  - 'firewall-cmd --permanent --add-port="5674/tcp" '
+  - firewall-cmd --reload
   - yum -y install satellite
   - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -C "foreman@${SATSERV}" -N "" '
-  - sleep 2
-  - 'firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https && firewall-cmd --permanent --add-port="5674/tcp" '
-  - sleep 2
-  - firewall-cmd --reload
 
 _EOF_
 
