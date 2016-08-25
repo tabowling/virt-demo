@@ -75,17 +75,19 @@ runcmd:
   - yum -y install firewalld
   - systemctl start firewalld.service
   - systemctl enable firewalld.service
+  - yum -y install satellite
+  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -f /usr/share/foreman/.ssh/id_rsa -C "foreman@${SATSERV}" -N "" '
+  - yum -y groupinstall "Server with GUI"
   - 'firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https '
   - 'firewall-cmd --permanent --add-port="5674/tcp" '
   - firewall-cmd --reload
-  - yum -y install satellite
-  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -f /usr/share/foreman/.ssh/id_rsa -C "foreman@${SATSERV}" -N "" '
 
 _EOF_
 
-#  - yum -y groupinstall "Server with GUI"
+#
 #  - echo "$FOREMAN_RSA" > /usr/share/foreman/.ssh/id_rsa
 #  - echo "$FOREMAN_PUB" > /usr/share/foreman/.ssh/id_rsa.pub
+
 # Create the image and move into place
 genisoimage -output ${DOMNAME}-cloudinit.iso -volid cidata -joliet -rock user-data meta-data
 
