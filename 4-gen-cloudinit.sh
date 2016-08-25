@@ -42,6 +42,27 @@ chpasswd:
     root:redhat
     cloud-user:redhat
   expire: False
+rh_subscription:
+  username: $RHNUSER
+  password: $RHNPASS
+  service-level: self-support
+  add-pool 8a85f9833e1404a9013e3cddf95a0599
+  add-pool 8a85f981501430fe015019593a930646
+packages:
+  - git
+  - screen
+  - vim-enhanced
+  - redhat-support-tool
+  - pcp
+  - sos
+  - chrony
+  - kexec-tools
+  - abrt-addon-kerneloops
+  - abrt-addon-ccpp
+  - abrt-cli
+  - spice-vdagent
+  - openssh-clients
+  - wget
 
 _EOF_
 
