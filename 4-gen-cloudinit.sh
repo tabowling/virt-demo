@@ -46,9 +46,8 @@ rh_subscription:
   username: $RHNUSER
   password: $RHNPASS
   service-level: self-support
-  add-pool [8a85f9833e1404a9013e3cddf95a0599,8a85f981501430fe015019593a930646]
-  disable-repo: [*]
-  enable-repo: [rhel-7-server-rpms,rhel-server-rhscl-7-rpms,rhel-7-server-satellite-6.2-rpms]
+  add-pool: [8a85f9833e1404a9013e3cddf95a0599, 8a85f981501430fe015019593a930646]
+  enable-repo: [rhel-7-server-rpms, rhel-server-rhscl-7-rpms, rhel-7-server-satellite-6.2-rpms]
 
 _EOF_
 
