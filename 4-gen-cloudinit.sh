@@ -52,13 +52,6 @@ users:
     ssh_pwauth: True
     ssh_authorized_keys:
       - $PUBRSA
-  - name: foreman
-    homedir:
-      - /usr/share/foreman
-    shell: /sbin/nologin
-    primary-group: foreman
-    groups:
-    ssh-import-id: foreman.id_rsa
 chpasswd:
   list: |
     root:redhat
@@ -85,6 +78,7 @@ runcmd:
   - firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https && firewall-cmd --permanent --add-port="5674/tcp"
   - firewall-cmd --reload
   - yum -y install satellite
+  - su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -C "foreman@${SATSERV}" -N "" '
 
 _EOF_
 
