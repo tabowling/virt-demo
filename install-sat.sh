@@ -29,10 +29,11 @@ then
 fi
 
 
-cat >> /etc/hosts  << _EOF_
-192.168.$OCTET.200  $SATSERV.example$OCTET.com $SATSERV
-
-_EOF_
+echo $(hostname -I) $(hostname) $(hostname -s) >> /etc/hosts
+#cat >> /etc/hosts  << _EOF_
+#192.168.$OCTET.200  $SATSERV.example$OCTET.com $SATSERV
+#
+#_EOF_
 
 # You will need to create an ssh key for the root user on the satellite to connect to your 
 # virtualization host if you would like to have the ability to provision VM's from within satellite.. 
@@ -74,8 +75,7 @@ EOF
 #read -n1 -r -p "Press any key to continue."
 #yum -y update
 #yum -y groupinstall "Server with GUI"
-#yum -y install satellite
-#echo $(hostname -I) $(hostname) $(hostname -s) >> /etc/hosts
+yum -y install satellite
 
 su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -f /usr/share/foreman/.ssh/id_rsa -C "foreman@sat6demo$(hostname -s)" -N "" '
 su - foreman -s /bin/bash -c "ssh-keyscan 192.168.${OCTET}.1 >> /usr/share/foreman/.ssh/known_hosts"
