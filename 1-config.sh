@@ -57,14 +57,15 @@ done;
 
 #./1.2-modks.sh
 
+echo $DEMOSEAT
 echo $DOMNAME
 echo $SATSERV
 echo $VMPATH
 echo $ISOPATH
 echo $TEMPLATE
-echo $KS
-echo $MAC
-echo $PUBRSA
+#echo $KS
+#echo $MAC
+#echo $PUBRSA
 
 #echo Do not forget to set RHPASS!!!!
 
