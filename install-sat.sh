@@ -41,15 +41,6 @@ echo $(hostname -I) $(hostname) $(hostname -s) >> /etc/hosts
 /usr/bin/ssh-keyscan 192.168.${OCTET}.1 
 
 
-echo "setting up firewalld"
-yum -y install firewalld
-systemctl start firewalld.service  
-systemctl enable firewalld.service  
-firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https 
-firewall-cmd --permanent --add-port="5674/tcp" 
-firewall-cmd --reload  
-
-
 #echo "Setting up internal repos"
 cat > /etc/yum.repos.d/internal.repo <<EOF
 [sat62]  
@@ -71,8 +62,16 @@ enabled=1
 gpgcheck=0  
 EOF
 
+
+echo "setting up firewalld"
+yum -y install firewalld
+systemctl start firewalld.service  
+systemctl enable firewalld.service  
+firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-service=dhcp --add-service=tftp --add-service=http --add-service=https 
+firewall-cmd --permanent --add-port="5674/tcp" 
+firewall-cmd --reload  
+
 #echo "doing Satellite install"
-#read -n1 -r -p "Press any key to continue."
 yum -y update
 yum -y groupinstall "Server with GUI"
 yum -y install satellite
