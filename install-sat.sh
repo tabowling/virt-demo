@@ -38,7 +38,7 @@ echo $(hostname -I) $(hostname) $(hostname -s) >> /etc/hosts
 # You will need to create an ssh key for the root user on the satellite to connect to your 
 # virtualization host if you would like to have the ability to provision VM's from within satellite.. 
 /usr/bin/ssh-keygen -qt rsa -f /root/.ssh/id_rsa -N "" 
-/usr/bin/ssh-keyscan 192.168.${OCTET}.1 
+/usr/bin/ssh-keyscan 192.168.${OCTET}.1 >> /root/.ssh/known_hosts
 
 
 #echo "Setting up internal repos"
