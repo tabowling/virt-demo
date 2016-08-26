@@ -25,6 +25,7 @@ then
         echo "You need to provide DEMOSEAT env variable."
 	echo "./install-sat.sh X"
 	echo "Where X is your demoseat number"
+	exit 1;
 fi
 
 
