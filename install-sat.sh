@@ -1,4 +1,33 @@
-source 1-config.sh
+
+
+if [ -n "$1" ]; then
+        echo "You have specified DEMOSEAT $1."
+	export DEMOSEAT=$DEMOSEAT
+	export SATSERV=$SATSERV
+	export OCTET=${1}${1}
+
+	echo "Setting up env vars"
+	cat > /root/demo_env.sh <<EOF
+	export DEMOSEAT=$DEMOSEAT
+	export SATSERV=$SATSERV
+	export DOMAIN=example${OCTET}.com
+	export ORG=example${OCTET}
+	export LOC=Indianapolis
+EOF
+	source /root/demo_env.sh
+elif [ -e "/root/demo_env.sh" ]; then
+	echo "Using DEMOSEAT $DEMOSEAT from demo_env.sh."
+	source /root/demo_env.sh
+fi
+
+if [ "$DEMOSEAT" == "" ]
+then
+        echo "You need to provide DEMOSEAT env variable."
+	echo "./install-sat.sh X"
+	echo "Where X is your demoseat number"
+fi
+
+
 cat >> /etc/hosts  << _EOF_
 192.168.$OCTET.200  $SATSERV.example$OCTET.com $SATSERV
 
@@ -18,14 +47,6 @@ firewall-cmd --permanent --add-service=RH-Satellite-6 --add-service=dns --add-se
 firewall-cmd --permanent --add-port="5674/tcp" 
 firewall-cmd --reload  
 
-echo "Setting up env vars"
-cat >> /root/.bashrc <<EOF
-export DEMOSEAT=$DEMOSEAT
-export SATSERV=$SATSERV
-export DOMAIN=example${OCTET}.com
-export ORG=example${OCTET}
-export LOC=Indianapolis
-EOF
 
 #echo "Setting up internal repos"
 cat > /etc/yum.repos.d/internal.repo <<EOF
