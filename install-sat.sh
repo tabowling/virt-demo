@@ -73,17 +73,20 @@ EOF
 
 #echo "doing Satellite install"
 #read -n1 -r -p "Press any key to continue."
-#yum -y update
-#yum -y groupinstall "Server with GUI"
+yum -y update
+yum -y groupinstall "Server with GUI"
 yum -y install satellite
 
+
+systemctl set-default graphical.target
 su - foreman -s /bin/bash -c '/usr/bin/ssh-keygen -qt rsa -f /usr/share/foreman/.ssh/id_rsa -C "foreman@sat6demo$(hostname -s)" -N "" '
 su - foreman -s /bin/bash -c "ssh-keyscan 192.168.${OCTET}.1 >> /usr/share/foreman/.ssh/known_hosts"
 
 echo
-echo "Complete.  Please execute the following commands from your HYPERVISOR to copy ssh keypairs."
-echo "ssh sat6demo$DEMOSEAT  "cat /root/.ssh/id_rsa.pub" >> /root/.ssh/authorized_keys"
+echo "Complete.  Please execute the following commands from your HYPERVISOR to copy ssh keypairs and Reboot."
+echo"ssh sat6demo$DEMOSEAT  "cat /root/.ssh/id_rsa.pub" >> /root/.ssh/authorized_keys"
 echo "ssh sat6demo$DEMOSEAT  "cat /usr/share/foreman/.ssh/id_rsa.pub" >> /root/.ssh/authorized_keys"
+echo "virsh reboot sat6demo$DEMOSEAT"
 echo
 
 
