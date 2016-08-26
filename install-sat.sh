@@ -2,8 +2,8 @@
 
 if [ -n "$1" ]; then
         echo "You have specified DEMOSEAT $1."
-	export DEMOSEAT=$DEMOSEAT
-	export SATSERV=$SATSERV
+	export DEMOSEAT=$1
+	export SATSERV="sat6demo${1}"
 	export OCTET=${1}${1}
 
 	echo "Setting up env vars"
