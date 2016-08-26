@@ -85,7 +85,7 @@ echo
 echo "Complete.  Please execute the following commands from your HYPERVISOR to copy ssh keypairs and Reboot."
 echo "ssh sat6demo$DEMOSEAT  'cat /root/.ssh/id_rsa.pub' >> /root/.ssh/authorized_keys"
 echo "ssh sat6demo$DEMOSEAT  'cat /usr/share/foreman/.ssh/id_rsa.pub' >> /root/.ssh/authorized_keys"
-echo "virsh reboot sat6demo$DEMOSEAT"
+echo "ssh sat6demo$DEMOSEAT reboot"
 echo
 
 
