@@ -83,7 +83,7 @@ su - foreman -s /bin/bash -c "ssh-keyscan 192.168.${OCTET}.1 >> /usr/share/forem
 
 echo
 echo "Complete.  Please execute the following commands from your HYPERVISOR to copy ssh keypairs and Reboot."
-echo"ssh sat6demo$DEMOSEAT  'cat /root/.ssh/id_rsa.pub' >> /root/.ssh/authorized_keys"
+echo "ssh sat6demo$DEMOSEAT  'cat /root/.ssh/id_rsa.pub' >> /root/.ssh/authorized_keys"
 echo "ssh sat6demo$DEMOSEAT  'cat /usr/share/foreman/.ssh/id_rsa.pub' >> /root/.ssh/authorized_keys"
 echo "virsh reboot sat6demo$DEMOSEAT"
 echo
