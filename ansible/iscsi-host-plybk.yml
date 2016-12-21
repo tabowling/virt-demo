@@ -13,13 +13,21 @@
     LV3: lv_iscsi3
 #  roles:
 #    - OndrejHome.targetcli
+
   tasks:
+  
+  - debug: 
+      var: ansible_distribution 
+      var: ansible_distribution_release
+      var: ansible_distribution_version
+      var: ansible_distribution_major_version
+      verbosity: 1
 
   - name: Verify supported platform
     fail:
       msg: "Only RHEL 6.4+ is supported"
-    when: (ansible_os_family == "debian" and ansible_distribution_major_version|int >= "6")
-    #when: (ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= "6")
+    #when: ansible_distribution_major_version|int >= '6'
+    when: "(ansible_distribution == 'RedHat' and ansible_distribution_major_version|int >= '6')"
 
   # Verify or create that our Volume Group is defined
   - name: Verify or create Volume Group
