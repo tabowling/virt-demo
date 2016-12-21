@@ -1,0 +1,61 @@
+---
+# Configure kvm host to export iscsi luns
+
+- hosts: kvm_host
+  any_errors_fatal: true
+  become: yes
+  become_method: sudo
+  become_user: root
+  vars:
+    VG: RHEL7CSB
+    LV1: lv_iscsi1
+    LV2: lv_iscsi2
+    LV3: lv_iscsi3
+#  roles:
+#    - OndrejHome.targetcli
+  tasks:
+
+  - name: Verify supported platform
+    fail:
+      msg: "Only RHEL 6.4+ is supported"
+    when: (ansible_os_family == "debian" and ansible_distribution_major_version|int >= "6")
+    #when: (ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= "6")
+
+  # Verify or create that our Volume Group is defined
+  - name: Verify or create Volume Group
+    lvg:
+      vg: "{{ VG }}"
+      pvs: /dev/mapper/luks-2913d4f4-b524-4d4b-affa-82b7d2fad23b
+      state: present
+
+
+# "ansible_distribution": "RedHat",
+# "ansible_distribution_release": "Final",
+# "ansible_distribution_version": "6.4"
+# ansible_distribution_major_version == "6"
+# ansible_lsb.major_release|ing  >= "6"
+#
+# when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= "6") or
+#       ansible_os_family == "CentOS" and ansible_distribution_major_version|int >= "6") 
+
+
+
+
+#iscsi_targets:
+#  - target1:
+#    wwn: "iqn.1994-05.com.redhat:target"
+#    disks:
+#      - disk1:
+#        path: /dev/{{ VG }}/LV1
+#        name: test1
+#        type: block
+#      - disk2:
+#        path: /dev/c7vg/LV2
+#        name: test2
+#        type: block
+#    initiators:
+#      - client1:
+#        wwn: iqn.1994-05.com.redhat:client1
+#      - client2:
+#        wwn: iqn.1994-05.com.redhat:client2
+
