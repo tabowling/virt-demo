@@ -49,48 +49,8 @@ case $DOMNAME in
 		RAM=" --ram 1024 "
 		VCPUS=" --vcpus 1"
 		;;
-	client1)        
+	client[1-9])        
 		MAC=$client1Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client2)       
-		MAC=$client2Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client3)       
-		MAC=$client3Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client4)       
-		MAC=$client4Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client5)       
-		MAC=$client5Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client6)       
-		MAC=$client6Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client7)       
-		MAC=$client7Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client8)       
-		MAC=$client8Mac
-		RAM=" --ram 1024 "
-		VCPUS=" --vcpus 1"
-		;;
-	client9)       
-		MAC=$client9Mac
 		RAM=" --ram 1024 "
 		VCPUS=" --vcpus 1"
 		;;

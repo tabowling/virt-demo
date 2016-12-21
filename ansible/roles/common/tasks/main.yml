@@ -1,12 +1,28 @@
-# common tasks for all rhel systems
+# See documentation for this core module as well as subscription-manager for further usage details.
+# http://docs.ansible.com/ansible/redhat_subscription_module.html
+#
+# All usernames and passwords should be stored in ansible-vault encrypted files - NOT in clear text.
 
-- name: Register System with RHN Subscription Manager
-  redhat_subscription: state=present
-                       username={{ rhn_user }}
-                       password={{ rhn_pass }}
-                       autosubscribe=true
+# name: Register system with Subscription Manager
+- redhat_subscription: 
+    state: present
+    username: "{{ rhn_username }}"
+    password: "{{ rhn_password }}"
+    autosubscribe: false
+#    pool: '^Employee SKU$'   # Do Not do this, attaches multiple, over consuming
+#    pool: "{{ POOL_ID }}"    # Not yet supported in EPEL version 2.2.0.0-4
   when: ansible_distribution == 'RedHat'
 
-- name: attach the employee sku
-  command: subscription-manager attach --pool={{ employee_sku }}
+- name: attach a valid subscription
+  command: subscription-manager attach --pool={{ POOL_ID }}
   when: ansible_distribution == 'RedHat'
+
+
+# Verify with these commands
+#  subscription-manager status
+#  subscription-manager list
+#  subscription-manager list --consumed --pool-only
+#  subscription-manager list --consumed
+
+
+
