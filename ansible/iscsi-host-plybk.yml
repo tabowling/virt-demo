@@ -39,15 +39,10 @@
 
 
 # "ansible_distribution": "RedHat",
-# "ansible_distribution_release": "Final",
-# "ansible_distribution_version": "6.4"
+# "ansible_distribution_release": "Maipo",
+# "ansible_distribution_version": "7.2"
 # ansible_distribution_major_version == "6"
 # ansible_lsb.major_release|ing  >= "6"
-#
-# when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= "6") or
-#       ansible_os_family == "CentOS" and ansible_distribution_major_version|int >= "6") 
-
-
 
 
 #iscsi_targets:
